@@ -11,14 +11,25 @@ QMAKE_CXXFLAGS += -Wa,-mbig-obj
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+# Add pybind
+INCLUDEPATH += \
+    C:\Users\miguel\AppData\Local\Programs\Python\Python312\Lib\site-packages\pybind11\include \
+    C:\\Users\\Miguel\\AppData\\Local\\Programs\\Python\\Python312\\include
+
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    qcustomplot.cpp
+    python_binder.cpp \
+    qcustomplot.cpp \
+    wkv.cpp
 
 HEADERS += \
     mainwindow.h \
-    qcustomplot.h
+    python_binder.h \
+    qcustomplot.h \
+    wkv.h
+    pybind11\pybind11.h
+    pybind11\stl.h
 
 FORMS += \
     mainwindow.ui

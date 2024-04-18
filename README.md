@@ -5,7 +5,8 @@ This application is designed to visualize sensor signals and processed parameter
 ## Design Decisions
 
 - **Platform Compatibility:** Developed using Qt 6.7.0 on Windows.
-- **Plotting Library:** Using Qwt 6.2.0, chosen for capabilities in plotting scientific and engineering data.
+- **Plotting Library:** Using QCustomPlot. Tried initially with Qwt 6.2.0 wasn't able integrated it into Qt
+- **Timestamp library** Using STL \<chrono\> module for possibility to reprent timing under millisecond precision
 
 ## Features
 
