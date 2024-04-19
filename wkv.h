@@ -1,29 +1,36 @@
 #ifndef WKV_H
 #define WKV_H
 
-#include <string>
-#include <vector>
-#include <utility>
+#include <QVector>
+#include <QString>
 
 
 class WKV
 {
-    std::string sensorName;
-    std::string unit;
-    std::vector<std::pair<double, double>> dataSeries;
+    QString sensorName;
+    QString unit;
+    QVector<double> timeStamps;
+    QVector<double> sensorData;
 
 public:
-    WKV(const std::string& sensorName,
-        const std::string& unit,
-        const std::vector<std::pair<double, double>>& dataSeries);
+    WKV(const QString sensorName,
+        const QString unit);
 
+    QString getSensorName();
 
-    std::string getSensorName();
+    QString getUnit();
 
-    std::string getUnit();
+    QVector<double> getTimeStamps();
 
-    std::vector<std::pair<double, double>> getDataSeries();
+    QVector<double> getSensorData();
 
+    void acquireSensor();
 };
 
 #endif // WKV_H
+
+
+
+
+
+

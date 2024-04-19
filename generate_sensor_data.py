@@ -7,8 +7,36 @@ import numpy as np
 from datetime import datetime, timedelta
 
 
+# Initial timestamp for the sensor readings
+initial_timestamp =  datetime.strptime("2024-04-18 10:00:00", '%Y-%m-%d %H:%M:%S')
 
-def generate_time_series(frequency: float, duration:float, initial_timestamp: datetime = datetime.now(), jitter: float = 0.0) -> np.ndarray:
+# Parameters for generating the sensor readings
+duration = 20 # seconds
+sensors = {
+    'hip_joint_angle':
+    {
+      'f_sampling': 1000, # Hz
+      'duration': 20, # seconds
+      'jitter': 0.5, # fraction of period
+    },
+    'hip_joint_gyro':
+    {
+      'f_sampling': 400, # Hz
+      'duration': 20, # seconds
+      'jitter': 0, # fraction of period
+    }
+    }
+
+# Parameters for generating the hip joint dynamics parameters
+gait_cycle = 1.0 # seconds
+gait_frequency = 1.0 / gait_cycle # Hz    
+
+max_angle = 30*np.pi/180 # radians
+min_angle = -5*np.pi/180 # radians
+
+
+
+def generate_time_series(f_sampling: float, duration:float, initial_timestamp: datetime = datetime.now(), jitter: float = 0.0) -> np.ndarray:
     """
     Generates a time series with a given frequency and duration, adding a specified amount of jitter.
 
@@ -21,7 +49,7 @@ def generate_time_series(frequency: float, duration:float, initial_timestamp: da
     Returns:
     numpy.ndarray: The generated time series.
     """
-    period = 1/frequency
+    period = 1/f_sampling
     jitter_sd = period * jitter
     
     # with constant frequency
@@ -38,7 +66,7 @@ def generate_time_series(frequency: float, duration:float, initial_timestamp: da
 
 def generate_angle_sensor(time_series: np.ndarray) -> np.ndarray:
     """
-    Generates a time series of the hip joint angle sensor data.
+    Generates dummy readings from a hip joint angle sensor.
     Assumes a person walking with a gait cycle of 1.0 seconds.
 
     Parameters:
@@ -58,23 +86,56 @@ def generate_angle_sensor(time_series: np.ndarray) -> np.ndarray:
     offset = (max_angle + min_angle) / 2
     
     
-    fundamental_angle = 2 * np.pi * gait_frequency * time_series
-    thirdharmonic_angle = 2 * np.pi * 3 * gait_frequency * time_series
+    fundamental_freq = 2 * np.pi * gait_frequency
+    #thirdharmonic_angle = 2 * np.pi * 3 * gait_frequency * time_series
     
-    angle_data = amplitude*np.sin(fundamental_angle) + (0.2*amplitude)*np.sin(thirdharmonic_angle+0.1*np.pi)  + offset
+    angle_data = amplitude*np.sin(fundamental_freq * time_series) + offset
+    
+    return angle_data
+
+def generate_gyro_sensor(time_series: np.ndarray) -> np.ndarray:
+    """
+    Generates dummy readings from a 1-axis (hip joint) gyroscope from an IMU sensor data.
+    Assumes a person walking with a gait cycle of 1.0 seconds.
+
+    Parameters:
+    time_series (numpy.ndarray): The time series for which to generate the angle sensor data.
+
+    Returns:
+    numpy.ndarray: The generated angle sensor data in radians.
+    """
+    
+    amplitude = (max_angle - min_angle) / 2
+    offset = (max_angle + min_angle) / 2
+    
+    
+    fundamental_freq =  2 * np.pi * gait_frequency
+    #thirdharmonic_angle = 2 * np.pi * 3 * gait_frequency * time_series
+    
+    angle_data = 2 * np.pi * gait_frequency * amplitude * np.cos(fundamental_freq * time_series)
     
     return angle_data
 
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Generate sensor data.')
-    parser.add_argument('frequency', type=float, help='Frequency of data generation in Hz')
-    parser.add_argument('duration', type=int, help='Duration of data generation in seconds')
+    parser = argparse.ArgumentParser(description='Generate dummy sensor data.')
+    parser.add_argument('sensor_name', type=str, help='Name of sensor to generate data for.')
+    
     args = parser.parse_args()
 
-    time_series = generate_time_series(args.frequency, args.duration)
-    angle_data = generate_angle_sensor(time_series)
-    
-    for (t, angle) in zip(time_series, angle_data):
-        print(f'{t},{angle}')
+    if args.sensor_name not in sensors:
+        raise ValueError(f'Unknown sensor name: {args.sensor_name}.')  
+
+    f_sampling = sensors[args.sensor_name]['f_sampling']
+    jitter = sensors[args.sensor_name]['jitter']
+    time_series = generate_time_series(f_sampling, duration, initial_timestamp=initial_timestamp, jitter=jitter)
+
+    if args.sensor_name == 'hip_joint_angle':
+        data_series = generate_angle_sensor(time_series)
+    elif args.sensor_name == 'hip_joint_gyro':
+        data_series = generate_gyro_sensor(time_series)
+
+    for (t, data) in zip(time_series, data_series):
+        print(f'{t},{data}')
     

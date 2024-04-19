@@ -34,23 +34,13 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="inputTi">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>40</y>
-      <width>41</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="labelTi">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>541</x>
       <y>40</y>
-      <width>41</width>
-      <height>41</height>
+      <width>21</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -61,23 +51,13 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>100</y>
-      <width>41</width>
-      <height>41</height>
+      <y>80</y>
+      <width>21</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>t_f:</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="inputTf">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>100</y>
-      <width>41</width>
-      <height>41</height>
-     </rect>
     </property>
    </widget>
    <widget class="QCustomPlot" name="plotRegression" native="true">
@@ -98,6 +78,39 @@
       <width>481</width>
       <height>181</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputTimeBegin">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>40</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputTimeEnd">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>80</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonPlotZoom">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>40</y>
+      <width>75</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plot Zoom</string>
     </property>
    </widget>
   </widget>

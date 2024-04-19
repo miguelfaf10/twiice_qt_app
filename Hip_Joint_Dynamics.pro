@@ -21,12 +21,14 @@ SOURCES += \
     mainwindow.cpp \
     python_binder.cpp \
     qcustomplot.cpp \
+    utilities.cpp \
     wkv.cpp
 
 HEADERS += \
     mainwindow.h \
     python_binder.h \
     qcustomplot.h \
+    utilities.h \
     wkv.h
     pybind11\pybind11.h
     pybind11\stl.h

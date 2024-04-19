@@ -1,29 +1,48 @@
 #include "wkv.h"
-#include <string>
-#include <vector>
-#include <utility>
-#include <chrono>
-
-
-
-using std::chrono::time_point;
+#include "python_binder.h"
 
 
 // Constructor
-WKV::WKV(const std::string& sensorName, const std::string& unit, const std::vector<std::pair<double, double>>& dataSeries)
-    : sensorName(sensorName), unit(unit), dataSeries(dataSeries) {}
+WKV::WKV(QString sensorName, QString unit) : sensorName(sensorName), unit(unit) {}
 
 // Getter functions
-std::string WKV::getSensorName()  {
+QString WKV::getSensorName()  {
     return sensorName;
 }
 
-std::string WKV::getUnit() {
+QString WKV::getUnit() {
     return unit;
 }
 
-std::vector<std::pair<double, double>> WKV::getDataSeries() {
-    return dataSeries;
+QVector<double> WKV::getTimeStamps() {
+    return timeStamps;
 }
+
+QVector<double> WKV::getSensorData() {
+    return sensorData;
+}
+
+void WKV::acquireSensor() {
+
+    QString python_script = "generate_sensor_data.py";
+
+    std::pair<QVector<double>, QVector<double>> output;
+
+    if (getSensorName() == "hip_joint_angle"){
+        output = getSensorDataFromPython(python_script , "hip_joint_angle");
+    }
+    else if (getSensorName() == "hip_joint_gyro"){
+        output = getSensorDataFromPython(python_script , "hip_joint_gyro");
+    };
+
+
+    timeStamps = output.first;
+    sensorData = output.second;
+
+}
+
+
+
+
 
 
