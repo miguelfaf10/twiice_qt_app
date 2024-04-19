@@ -32,13 +32,18 @@ void TimeSeries::addPoint(double time, double value) {
 }
 
 // Resamples a time series and returns a new TimeSeries object
-TimeSeries TimeSeries::resample(double start, double interval, int nPoints) {
-    TimeSeries resampled;
-    for (double k = 1; k <= nPoints; k += 1) {
-        double newTime = start + k * interval;
-        resampled.addPoint(newTime, interpolate(newTime));
+TimeSeries TimeSeries::resample100Hz(double timeBegin) {
+
+    TimeSeries resampledTimeSeries;
+
+    double newInterval = 0.01; // fs = 100Hz
+
+    double newTime = timeBegin;
+    while ( newTime < timestamps.last()) {
+        newTime += newInterval;
+        resampledTimeSeries.addPoint(newTime, interpolate(newTime));
     }
-    return resampled;
+    return resampledTimeSeries;
 }
 
 // interpolates
@@ -87,12 +92,26 @@ TimeSeries TimeSeries::slice(double timeBegin, double timeEnd) {
     auto it_end = std::upper_bound(timestamps.begin(), timestamps.end(), timeEnd);
     int index_end = std::distance(timestamps.begin(), it_end);
 
-    qDebug() << "Slicing timeseries" << index_begin << "(" << *it_begin << ")" << index_end << "(" << *it_end << ")\n";
+    qDebug() << "Slicing timeseries" << index_begin << "(" << *it_begin << "s)" << index_end << "(" << *it_end << "s)\n";
 
-    TimeSeries newTimeSeries = TimeSeries(timestamps.mid(index_begin, index_end), datavalues.mid(index_begin, index_end));
+    TimeSeries newTimeSeries = TimeSeries(timestamps.mid(index_begin, index_end - index_begin), datavalues.mid(index_begin, index_end  - index_begin));
 
     return newTimeSeries;
 }
+
+QVector<std::pair<double, double>> TimeSeries::findLocalMaxima() {
+
+    QVector<std::pair<double, double>> localMaxima;
+
+    for (int i = 2; i < timestamps.size() - 2; ++i) {
+        if (datavalues[i] > datavalues[i - 1] && datavalues[i] > datavalues[i + 1]) {
+            localMaxima.push_back({timestamps[i], datavalues[i]});
+        }
+    }
+
+    return localMaxima;
+}
+
 
 // Class WKV
 

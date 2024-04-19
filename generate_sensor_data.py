@@ -15,15 +15,13 @@ duration = 20 # seconds
 sensors = {
     'hip_joint_angle':
     {
-      'f_sampling': 1000, # Hz
-      'duration': 20, # seconds
-      'jitter': 0.5, # fraction of period
+      'f_sampling': 100, # Hz
+      'jitter': 0.02, # fraction of period
     },
     'hip_joint_gyro':
     {
-      'f_sampling': 400, # Hz
-      'duration': 20, # seconds
-      'jitter': 0, # fraction of period
+      'f_sampling': 40, # Hz
+      'jitter': 0.05, # fraction of period
     }
     }
 

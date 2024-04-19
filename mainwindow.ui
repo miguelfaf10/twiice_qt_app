@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>820</width>
+    <width>739</width>
     <height>938</height>
    </rect>
   </property>
@@ -60,7 +60,7 @@
      <string>t_f:</string>
     </property>
    </widget>
-   <widget class="QCustomPlot" name="plotRegression" native="true">
+   <widget class="QCustomPlot" name="plotSensorResampled" native="true">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -123,7 +123,32 @@
      </rect>
     </property>
     <property name="text">
-     <string>Plot Raw</string>
+     <string>Acquire Sensor
+Plot Raw</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listMaxima">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>520</y>
+      <width>161</width>
+      <height>101</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonPlotResampled">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>440</y>
+      <width>161</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plot Resampled
+Find Maxima</string>
     </property>
    </widget>
   </widget>
@@ -132,7 +157,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>820</width>
+     <width>739</width>
      <height>22</height>
     </rect>
    </property>

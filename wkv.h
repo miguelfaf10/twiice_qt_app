@@ -19,7 +19,7 @@ class TimeSeries {
 
     TimeSeries slice(double timeBegin, double timeEnd);
 
-    TimeSeries resample(double start, double interval, int nPoints);
+    TimeSeries resample100Hz(double timeBegin);
 
     void addPoint(double time, double value);
 
@@ -28,6 +28,8 @@ class TimeSeries {
     QVector<double> getTimeStamps();
 
     QVector<double> getDataValue();
+
+    QVector<std::pair<double, double>> findLocalMaxima();
 
 };
 
