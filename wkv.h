@@ -5,12 +5,37 @@
 #include <QString>
 
 
+class TimeSeries {
+
+    QVector<double> timestamps;
+    QVector<double> datavalues;
+
+    public:
+
+    TimeSeries();
+    TimeSeries(QVector<double>timestamps_vector, QVector<double> datavalues_vector);
+
+    TimeSeries removeTimeOffset();
+
+    TimeSeries slice(double timeBegin, double timeEnd);
+
+    TimeSeries resample(double start, double interval, int nPoints);
+
+    void addPoint(double time, double value);
+
+    double interpolate(double newTime);
+
+    QVector<double> getTimeStamps();
+
+    QVector<double> getDataValue();
+
+};
+
 class WKV
 {
     QString sensorName;
     QString unit;
-    QVector<double> timeStamps;
-    QVector<double> sensorData;
+    TimeSeries timeseries;
 
 public:
     WKV(const QString sensorName,
@@ -20,9 +45,7 @@ public:
 
     QString getUnit();
 
-    QVector<double> getTimeStamps();
-
-    QVector<double> getSensorData();
+    TimeSeries getSensorData();
 
     void acquireSensor();
 };

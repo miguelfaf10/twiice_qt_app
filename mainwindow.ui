@@ -38,7 +38,7 @@
     <property name="geometry">
      <rect>
       <x>541</x>
-      <y>40</y>
+      <y>300</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -51,7 +51,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>80</y>
+      <y>340</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -84,7 +84,7 @@
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>40</y>
+      <y>300</y>
       <width>41</width>
       <height>22</height>
      </rect>
@@ -94,7 +94,7 @@
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>80</y>
+      <y>340</y>
       <width>41</width>
       <height>22</height>
      </rect>
@@ -104,13 +104,26 @@
     <property name="geometry">
      <rect>
       <x>620</x>
-      <y>40</y>
-      <width>75</width>
+      <y>300</y>
+      <width>81</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string>Plot Zoom</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonPlotFull">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>100</y>
+      <width>161</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plot Raw</string>
     </property>
    </widget>
   </widget>

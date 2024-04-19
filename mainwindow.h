@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "wkv.h"
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +22,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    // Declare sensor objects
+    WKV hipAngleSensor;
+    WKV hipGyroSensor;
+
 };
 #endif // MAINWINDOW_H
