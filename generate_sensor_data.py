@@ -15,12 +15,12 @@ duration = 20 # seconds
 sensors = {
     'hip_joint_angle':
     {
-      'f_sampling': 100, # Hz
+      'f_sampling': 1000, # Hz
       'jitter': 0.02, # fraction of period
     },
     'hip_joint_gyro':
     {
-      'f_sampling': 40, # Hz
+      'f_sampling': 400, # Hz
       'jitter': 0.05, # fraction of period
     }
     }
@@ -105,12 +105,11 @@ def generate_gyro_sensor(time_series: np.ndarray) -> np.ndarray:
     
     amplitude = (max_angle - min_angle) / 2
     offset = (max_angle + min_angle) / 2
-    
-    
+        
     fundamental_freq =  2 * np.pi * gait_frequency
     #thirdharmonic_angle = 2 * np.pi * 3 * gait_frequency * time_series
     
-    angle_data = 2 * np.pi * gait_frequency * amplitude * np.cos(fundamental_freq * time_series)
+    angle_data = 2 * np.pi * gait_frequency * amplitude * np.cos(fundamental_freq * time_series + np.pi/8)
     
     return angle_data
 

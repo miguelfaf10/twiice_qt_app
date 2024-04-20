@@ -4,11 +4,10 @@
 #include <QMainWindow>
 #include "wkv.h"
 
-
-
 QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 QT_END_NAMESPACE
 
@@ -27,5 +26,13 @@ private:
     WKV hipAngleSensor;
     WKV hipGyroSensor;
 
+
+    void setupUi();
+    void setupGraphs();
+
+    void onButtonAcquire();
+    void onButtonZoom();
+    void onButtonResample();
+    void onButtonRegression();
 };
 #endif // MAINWINDOW_H

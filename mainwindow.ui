@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>739</width>
-    <height>938</height>
+    <width>743</width>
+    <height>892</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,7 +70,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCustomPlot" name="plotDerived" native="true">
+   <widget class="QCustomPlot" name="plotSensorRegression" native="true">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -100,7 +100,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonPlotZoom">
+   <widget class="QPushButton" name="buttonZoom">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -113,7 +113,7 @@
      <string>Plot Zoom</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonPlotFull">
+   <widget class="QPushButton" name="buttonAcquire">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -131,13 +131,13 @@ Plot Raw</string>
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>520</y>
+      <y>540</y>
       <width>161</width>
-      <height>101</height>
+      <height>81</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonPlotResampled">
+   <widget class="QPushButton" name="buttonResample">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -151,13 +151,52 @@ Plot Raw</string>
 Find Maxima</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="buttonRegression">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>680</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Compute Regression</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listRegression">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>740</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelTi_2">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>519</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Peaks of &quot;hip_angle&quot; trace</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>739</width>
+     <width>743</width>
      <height>22</height>
     </rect>
    </property>

@@ -9,6 +9,6 @@ std::pair<int, int> sliceTimeSeries(const QVector<double> &timeSeries, double ti
 
 double computeMean(const QVector<double>& data);
 
-double computeStdDev(const QVector<double>& data);
+std::pair<double, double> linearRegression(QVector<double> indVar, QVector<double> depVar);
 
 #endif // UTILITIES_H
